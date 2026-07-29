@@ -1,0 +1,23 @@
+<!DOCTYPE html><html lang='vi'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Bé vui học toán</title>
+<style>body{font-family:Arial;background:#fdf6e3;text-align:center;padding:20px}button{font-size:22px;padding:10px 20px;margin:8px}.items{font-size:40px}.card{max-width:600px;margin:auto;background:#fff;padding:20px;border-radius:15px}</style></head>
+<body><div class='card'><h1>🎈 Bé vui học toán</h1><div id='q'></div><div class='items' id='items'></div><div id='opts'></div><p id='msg'></p></div>
+<script>
+const qs=[
+{i:"🍎",n:7,t:"Có bao nhiêu quả táo?",o:[5,7,9]},
+{i:"🌸",n:5,t:"Có bao nhiêu bông hoa?",o:[4,5,6]},
+{i:"🐟",n:9,t:"Có bao nhiêu con cá?",o:[8,9,10]},
+{i:"🚗",n:3,t:"Có bao nhiêu ô tô?",o:[2,3,4]},
+{i:"⭐",n:10,t:"Có bao nhiêu ngôi sao?",o:[8,9,10]}
+];
+let idx=0,score=0;
+function show(){
+ if(idx>=qs.length){document.querySelector('.card').innerHTML=`<h1>🏆 Hoàn thành!</h1><h2>Điểm: ${score}/5</h2><button onclick='location.reload()'>Chơi lại</button>`;return;}
+ let q=qs[idx];
+ qdiv.innerHTML='<h2>'+q.t+'</h2>';
+ items.textContent=q.i.repeat(q.n);
+ opts.innerHTML='';
+ msg.textContent='';
+ q.o.forEach(v=>{let b=document.createElement('button');b.textContent=v;b.onclick=()=>{if(v==q.n){score++;msg.textContent='🎉 Giỏi quá!';setTimeout(()=>{idx++;show()},1000)}else msg.textContent='😊 Con thử lại nhé!'};opts.appendChild(b);});
+}
+const qdiv=document.getElementById('q'),items=document.getElementById('items'),opts=document.getElementById('opts'),msg=document.getElementById('msg');show();
+</script></body></html>
